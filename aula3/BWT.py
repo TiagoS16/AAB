@@ -7,33 +7,23 @@ class BWT:
     def set_bwt(self, bw):
         self.bwt = bw
 
-    def buildbwt(self, text, buildsufarray = False):
+    def build_bwt(self, text, buildsufarray = False):
+        #construir a rotacao da sequencia
         ls = []
         for i in range(len(text)):
             ls.append(text[i:]+text[:i])
         ls.sort()
+        #vai percorrer a lista de strings e vais guardar o ultimo caractere de cada string
         res = ''
         for i in range(len(text)):
             res += ls[i][len(text)-1]
         if buildsufarray:
             self.sa = []
             for i in range(len(ls)):
-                stpos - ls[i].index('$')
+                stpos = ls[i].index('$')
                 self.sa.append(len(text)-stpos-1)
         return res
 
-    def build_bwt(self, text, buildsufarray = False):
-        #construir a rotacao da sequencia
-        ls = []
-        for i in range(len(text)):
-            ls.append(text[i:] + text[:i])
-        ls.sort()
-        #vai percorrer a lista de strings e vais guardar o ultimo caractere de cada string
-        res = ''
-        for i in range(len(text)):
-            res += ls[i][len(text)-1]
-        return res    
-    
     def inverse_bwt(self):
         firstcol = self.get_first_col()
         res = ""
@@ -126,9 +116,9 @@ def test3():
     seq = "TAGACAGAGA$"
     bw = BWT(seq, True)
     print("Suffix array:", bw.sa)
-#    print(bw.bw_matching_pos("AGA"))
+    print(bw.bw_matching_pos("AGA"))
 
 test()
 test2()
-#test3()
+test3()
 
