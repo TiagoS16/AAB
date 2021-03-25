@@ -1,22 +1,22 @@
 
 class SuffixTree:
-    
+
     def __init__(self):
         self.nodes = { 0:(-1,{}) } # root node
         self.num = 0
-    
+
     def print_tree(self):
         for k in self.nodes.keys():
             if self.nodes[k][0] < 0:
-                print (k, "->", self.nodes[k][1]) 
+                print (k, "->", self.nodes[k][1])
             else:
                 print (k, ":", self.nodes[k][0])
-                
+
     def add_node(self, origin, symbol, leafnum = -1):
         self.num += 1 #incrementa o numero do node
         self.nodes[origin][1][symbol] = self.num #(1 é para ir buscar o dicionario dentro do tuplo)
         self.nodes[self.num] = (leafnum,{}) #constroi o tuplo para o proximo node
-        
+
     def add_suffix(self, p, sufnum): #padrao e posicao de inicio do padrao
         pos = 0
         node = 0
@@ -28,12 +28,12 @@ class SuffixTree:
                     self.add_node(node, p[pos]) #adiciona o node
             node = self.nodes[node][1][p[pos]] #muda o node para a posicao atual aka o node atual
             pos += 1 #avanca uma posicao
-    
+
     def suffix_tree_from_seq(self, text):
         t = text + "$" #adiciona o simbolo no final da string
-        for i in range(len(t)): #itera pelo tamanho da string t
-            self.add_suffix(t[i:], i) #passa a seq da posicao i ate ao fim da string, e em que posicao foi iniciada
-            
+        for i in range(len(t)):  #itera pelo tamanho da string t
+            self.add_suffix(t[i:], i)  #passa a seq da posicao i ate ao fim da string, e em que posicao foi iniciada
+
     def find_pattern(self, pattern):
         pos = 0 #inutil
         node = 0
@@ -43,7 +43,7 @@ class SuffixTree:
             else: #caso nao exista no dicionaro
                 return None
         return self.get_leaves_below(node) #acabando de percorrer o pattern
-        
+
 
     def get_leaves_below(self, node):
         res = []
@@ -76,4 +76,3 @@ def test2():
 test()
 print()
 test2()
-        

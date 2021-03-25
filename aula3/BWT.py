@@ -11,12 +11,11 @@ class BWT:
         #construir a rotacao da sequencia
         ls = []
         for i in range(len(text)):
-            ls.append(text[i:]+text[:i])
-        ls.sort()
-        #vai percorrer a lista de strings e vais guardar o ultimo caractere de cada string
+            ls.append(text[i:]+text[:i]) #vai dar append a lista ls da sequencia variando o local de inicio (Rotações cíclicas da sequência)
+        ls.sort() #ordenar as sequencias de ordem alfabetica
         res = ''
         for i in range(len(text)):
-            res += ls[i][len(text)-1]
+            res += ls[i][len(text)-1] #vai percorrer a lista de strings e vai guardar o ultimo caractere de cada string
         if buildsufarray:
             self.sa = []
             for i in range(len(ls)):
@@ -72,7 +71,8 @@ class BWT:
                     bottomIndex = bottom - lmat[::-1].index(symbol)
                     top = lf[topIndex]
                     bottom = lf[bottomIndex]
-                else: flag = False
+                else:
+                    flag = False
             else: 
                 for i in range(top, bottom+1): res.append(i)
                 flag = False            
@@ -105,20 +105,22 @@ def test():
     print (bw.bwt)
     print (bw.last_to_first())
     print (bw.bw_matching("AGA"))
+    print('#' * 40)
 
 
 def test2():
     bw = BWT("")
     bw.set_bwt("ACG$GTAAAAC")
     print (bw.inverse_bwt())
+    print('#' * 40)
 
 def test3():
     seq = "TAGACAGAGA$"
     bw = BWT(seq, True)
     print("Suffix array:", bw.sa)
     print(bw.bw_matching_pos("AGA"))
+    print('#' * 40)
 
 test()
 test2()
 test3()
-
