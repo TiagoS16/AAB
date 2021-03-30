@@ -71,7 +71,7 @@ class SuffixTree:
 
     # ex1b
     def matches_prefix(self, prefix):
-        if self.find_pattern(prefix) is None: #verificar se o preixo existe
+        if self.find_pattern(prefix) is None: #verificar se o prefixo existe
             return 'Não existe esse prefixo'
         else:
             res = []
