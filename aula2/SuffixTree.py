@@ -71,7 +71,7 @@ def test2():
     st = SuffixTree()
     st.suffix_tree_from_seq(seq)
     print (st.find_pattern("TA"))
-    print(st.repeats(2,2))
+    #print(st.repeats(2,2))
 
 test()
 print()

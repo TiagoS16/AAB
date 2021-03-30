@@ -66,8 +66,7 @@ class SuffixTree:
             for letra in self.nodes[node][1].keys():  # itera as keys do dicionario do no
                 res.append(self.nodes[node][1][letra])  # adiciona o value de cada key iterada
             for i in res:  # itera os valores da lista res
-                res.extend(
-                    self.nodes[i][1].values())  # extende a lista res com os values do dicionaro dos nodes iterados
+                res.extend(self.nodes[i][1].values())  # extende a lista res com os values do dicionaro dos nodes iterados
             return res  # devolve os nodes da arvore abaixo do argumento
 
     # ex1b
@@ -85,7 +84,6 @@ class SuffixTree:
                     res.append(seq[i:i + tam]) #adiciona a lista res o excerto da seq entre o valor iterado (i) e i+tam
                     tam += 1 #incrementacao da varivavel tam de modo a quebrar o loop
         return res
-
 
 
 def test():
