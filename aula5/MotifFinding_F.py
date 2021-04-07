@@ -335,7 +335,7 @@ class MotifFinding:
 
 def test1():  
     sm = MotifFinding()
-    sm.readFile('C:/Users/josep/OneDrive/Documentos/GitHub/AASB/AASB_avançado/aula5/exemploMotifs.txt', 'dna')
+    sm.readFile('exemploMotifs.txt', 'dna')
     sol = [25,20,2,55,59]
     sa = sm.score(sol)
     print(sa)
@@ -366,7 +366,7 @@ def test2():
 
 def test3():
     mf = MotifFinding()
-    mf.readFile("C:/Users/josep/OneDrive/Documentos/GitHub/AASB/AASB_avançado/aula5/exemploMotifs.txt","dna")
+    mf.readFile("exemploMotifs.txt","dna")
     print ("Branch and Bound:")
     sol = mf.branchAndBound()
     print ("Solution: " , sol)
@@ -375,7 +375,7 @@ def test3():
 
 def test4():
     mf = MotifFinding()
-    mf.readFile("C:/Users/josep/OneDrive/Documentos/GitHub/AASB/AASB_avançado/aula5/exemploMotifs.txt","dna")
+    mf.readFile("exemploMotifs.txt","dna")
     print("Heuristic stochastic")
     sol = mf.heuristicStochastic()
     print ("Solution: " , sol)
@@ -388,7 +388,7 @@ def test4():
 
 def testEX():
     mf = MotifFinding()
-    mf.readFile("C:/Users/josep/OneDrive/Documentos/GitHub/AASB/AASB_avançado/aula5/exemploMotifs.txt","dna")
+    mf.readFile("exemploMotifs.txt","dna")
     print("Heuristic stochasticEX")
     sol = mf.heuristicStochasticex1_al5()
     print ("SolutionEX: " , sol)
@@ -398,11 +398,11 @@ def testEX():
     print ("Score:" , mf.scoreEX(sol2))
 
 test1()
-print('-------------------')
+print('#' * 40)
 test2()
-print('-------------------')
+print('#' * 40)
 test3()
-print('-------------------')
+print('#' * 40)
 test4()
-print('-------------------')
+print('#' * 40)
 testEX()
