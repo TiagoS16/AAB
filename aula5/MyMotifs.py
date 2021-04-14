@@ -1,16 +1,12 @@
-# -*- coding: utf-8 -*-
-"""
-@author: miguelrocha
-"""
-
-def createMatZeros (nl, nc): #função que vai criar uma matriz de 0, com o temanho de nl * nc dependendo dos valores dados nestas variáveis 
+def createMatZeros (nl, nc): #função que vai criar uma matriz de 0, com o temanho de nl * nc dependendo dos valores dados nestas variáveis
     res = [ ] 
     for i in range(0, nl):
         res.append([0]*nc)
     return res
 
 def printMat(mat): #função responsável por dar print a matriz, neste caso vai dar print lista a lista dentro da matriz
-    for i in range(0, len(mat)): print(mat[i])
+    for i in range(0, len(mat)):
+        print(mat[i])
 
 class MyMotifs:
 

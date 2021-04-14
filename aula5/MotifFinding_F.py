@@ -215,7 +215,7 @@ class MotifFinding:
         return bests #vai dar return do s
 
 
-    def roulette(self, f): #se o professor perguntar pedir a ele para explicar
+    def roulette(self, f):
         from random import random
         tot = 0.0
         for x in f: tot += (0.01+x)
