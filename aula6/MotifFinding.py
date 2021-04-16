@@ -195,7 +195,6 @@ class MotifFinding:
     # Gibbs sampling
 
     def gibbs(self, iterations=1000):
-
         from random import randint
         s = []  # criar a lista s de posições iniciais
         # Passo 1
@@ -229,7 +228,8 @@ class MotifFinding:
     def roulette(self, f):
         from random import random
         tot = 0.0
-        for x in f: tot += (0.01 + x)
+        for x in f:
+            tot += (0.01 + x)
         val = random() * tot  # vai multiplicar total por um valor random entre [0 e 1[ , e dizer que isto n faz sentido
         acum = 0.0
         ind = 0

@@ -1,4 +1,4 @@
-4class MySeq:
+class MySeq:
 
     def __init__(self, seq, tipo="dna"):
         self.seq = seq.upper()

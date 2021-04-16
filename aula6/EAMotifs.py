@@ -26,9 +26,8 @@ class EAMotifsInt (EvolAlgorithm):
         EvolAlgorithm.__init__(self, popsize, numits, noffspring, indsize)
 
     def initPopul(self, indsize):
-        maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
-        self.popul = PopulInt(self.popsize, indsize,
-                              maxvalue, [])
+        #maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
+        self.popul = PopulInt(self.popsize, indsize, maxvalue, [])
     
     def evaluate(self, indivs):#mudar a funcao de avalicao -> usamos o score
         for i in range(len(indivs)):
@@ -47,8 +46,7 @@ class EAMotifsReal (EvolAlgorithm):
 
     def initPopul(self, indsize):
         maxvalue = self.motifs.seqSize(0) - self.motifs.motifSize
-        self.popul = PopulReal(self.popsize, indsize,
-                              maxvalue, [])
+        self.popul = PopulReal(self.popsize, indsize,maxvalue, [])
 
     def vec_to_pwm(self,v):
         n_alph = len(self.motifs.alphabet)
@@ -78,13 +76,16 @@ class EAMotifsReal (EvolAlgorithm):
         for i in range(len(indivs)):
             ind = indivs[i]
             sol = ind.getGenes()
-            self.motifs.pwm = self.vec_to_pwm(sol)
+            #criar um MyMotif a partir da PWM
+            pwm = self.vec_to_pwm(sol)
+            mtf=MyMotifs(pwm=pwm, alphabet=self.motifs_finding.alphabet)
             s = []
-            for seq in self.motifs.seqs:
-                p = self.motifs.mostProbableSeq(seq)
+            for j in range(len(self.motifs_finding.seqs)):
+                seq=self.motifs_finding.seqs[j].seq
+                p = mtf.motifs.mostProbableSeq(seq)
                 s.append(p)
             ## TPC - ussar score multiplicativo sem atualizar a PWM ##
-            fit = self.motifs.score(sol)
+            fit = self.motifs_finding.score(s)
             ind.setFitness(fit)
 
 def test1():
