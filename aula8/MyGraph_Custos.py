@@ -150,7 +150,7 @@ class MyGraph_Custos:
                     if custo < custo_min:
                         custo_min = custo
                         vert_custo_min = vertice #altera o vertice para o vertice com o custo minimo
-                if vert_custo_min not in visited and vert_custo_min not in l and vert_custo_min != node:  # adicionar á queue
+                if vert_custo_min not in visited:  # adicionar o vertice com menor custo à queue
                     l.append((vert_custo_min, path + [(node, vert_custo_min)], dist + custo_min))
                     visited.append(vert_custo_min)
             return None
