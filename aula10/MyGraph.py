@@ -366,7 +366,7 @@ class MyGraph:
                 pass
             else:
                 return None, None
-        return res  # não percebi bem como isto vai funcionar no final
+        return res  # cria uma ligação entre os nos semi-balanceados (normalmente o inicial e o final)
 
     def is_connected(self):
         total = len(self.graph.keys()) - 1  # o total de nos
