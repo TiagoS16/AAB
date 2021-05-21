@@ -385,40 +385,42 @@ class MyGraph:
             tuplos = arcos[0]  # vai pegar no tuplo da primeira posição da lista de arcos
             i = 1  # usado para mudar a posição do tuplo no ciclo abaixo
             if res != []:  # quando res for diferente de lista vazia
-                while tuplos[0] not in res:  # enquanto o primeiro tuplo não existir na lista res
+                while tuplos[0] not in res:  # enquanto o primeiro tuplo não existir na lista res  # descobre novos tuplos que ainda faltam ver
                     tuplos = arcos[i]  # o tuplo passa a ser o tuplo da posição seguinte
                     i = i + 1  # incrementa para conseguir mudar para o novo tuplo
-            print(f'isto {arcos} é a var arcos')
+            # print(f'isto {arcos} é a var arcos')
             arcos.remove(tuplos)  # remove a lista de tuplos da lista de arcos
-            print(f'isto {arcos} é a var arcos')
+            # print(f'isto {arcos} é a var arcos')
             origem, prox = tuplos  # divide o tuplo nos nós de origem e sucessores
-            cycle = [origem, prox]  # cria uma lista com a mesma ordem do tuplo
-            print(f'isto {cycle} é a var cycle')
-            while prox != origem:
-                for suc in self.graph[prox]:
-                    if (prox, suc) in arcos:
-                        tuplos = (prox, suc)
-                        prox = suc
-                        cycle.append(prox)
-                        arcos.remove(tuplos)
-            if not res:
-                res = cycle
-            else:
-                pos = res.index(cycle[0])
-                for i in range(len(cycle) - 1):
-                    res.insert(pos + i + 1, cycle[i + 1])
+            cycle = [origem, prox]  # cria uma lista com a mesma ordem do tuplo/ ciclo inicial
+            # print(f'isto {cycle} é a var cycle')
+            while prox != origem:  # ciclo enquanto o nó prox for diferente do nó origem (corre o grafo e quando encontrar a origem para)
+                for suc in self.graph[prox]:  # iterar os nós sucessores do nó prox
+                    if (prox, suc) in arcos:  # caso o tuplo do nó prox e do sucessor desse existir na lista arcos
+                        tuplos = (prox, suc)  # tuplos passa a ser o tuplo (prox, suc)
+                        prox = suc  # o nó prox passa a ser o seu sucessor
+                        cycle.append(prox)  # o novo nó prox é adicionado à lista cycle
+                        arcos.remove(tuplos)  # remove-se o novo tuplo da lista arcos
+            if not res:  # caso res seja uma lista vazia
+                res = cycle  # adiciona o ciclo à lista res
+            else:  # caso res já tenha conteúdo vai juntar os ciclos
+                pos = res.index(cycle[0])  # cria a variavel pos que será o indice do ciclo na primeira posição
+                for i in range(len(cycle) - 1):  # itera as posições dos nós na lista cycle
+                    res.insert(pos + i + 1, cycle[i + 1])  # insere na lista res numa dada posição (pos+i+1) o nó da lista cycle (da posição i+1)
+                    # faz a junção dos ciclos
         return res
 
     def eulerian_path(self):
         unb = self.check_nearly_balanced_graph()
         if unb[0] is None or unb[1] is None:
-            return None
+            return None  # caso não haja pontos semi balanceados não ha caminho
         self.graph[unb[1]].append(unb[0])
-        cycle = self.eulerian_cycle()
-        for i in range(len(cycle)-1):
-            if cycle[i] == unb[1] and cycle[i+1] == unb[0]:
-                break
-        path = cycle[i+1:] + cycle[1:i+1]
+        cycle = self.eulerian_cycle()  # busca o ciclo através da função a montante
+        for i in range(len(cycle)-1):  # itera as posições dos nós
+            if cycle[i] == unb[1] and cycle[i+1] == unb[0]:  # quando o nó da lista cycle na posição i for igual ao segundo nó semi-balanceado
+                # e o nó seguinte da lista cycle for igual ao primeiro nó semi-balanceado
+                break  # quebra o loop
+        path = cycle[i+1:] + cycle[1:i+1]  # o path fica os nós do ciclo começando na posição i+1 e os nós desde a segunda posição até i+1
         return path
 
 
