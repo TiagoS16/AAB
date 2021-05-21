@@ -539,12 +539,21 @@ def test6():
     print (gr.clustering_coef(1))
     print (gr.clustering_coef(2))
 
+
+def test7():
+    gr = MyGraph({1: [2], 2: [3, 1], 3: [4], 4: [2, 5], 5: [6], 6: []})
+    gr.print_graph()
+    print(gr.check_balanced_graph())
+    print(gr.check_nearly_balanced_graph())
+    print(gr.eulerian_path())
+
 if __name__ == "__main__":
     #test1()
     #test2()
     #test3()
-    test4()
+    #test4()
     #test5()
     #test6()
+    test7()
     
     
